@@ -12,7 +12,7 @@ Let's build a Azure Storage Blob client and inject it into the nest app.
 npm install @imaness/azure-sdk-nest @azure/storage-blob
 ```
 
-1. Register the module with a S3 Client, in `app.module.ts`
+1. Register the module with a Blob Storage container client, in `app.module.ts`
 
 ```ts
 import { Module } from '@nestjs/common';
@@ -20,6 +20,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AzureSdkModule } from '@imaness/azure-sdk-nest';
 import { BlobServiceClient  } from '@azure/storage-blob';
+import { DefaultAzureCredential } from '@azure/identity';
 
 @Module({
   imports: [
@@ -151,7 +152,7 @@ AzureSdkModule.register({
 }),
 ```
 
-2. refer the S3 client use `@InjectAzure(Client, key)`
+2. refer the Blob Storage Container client use `@InjectAzure(Client, key)`
 ```ts
 @InjectAzure(ContainerClient, 'MYACCOUNT-MYCONTAINER-1') private readonly containerClient1: ContainerClient,
 @InjectAzure(ContainerClient, 'MYACCOUNT-MYCONTAINER-2') private readonly containerClient2: ContainerClient,
@@ -164,7 +165,7 @@ Set the option `isGlobal: true` to enable it
 ```ts
 AzureSdkModule.register({
   isGlobal: true,
-  client: new new ContainerClient(
+  client: new ContainerClient(
     'https://myaccount.blob.core.windows.net/mycontainer', 
     new DefaultAzureCredential()
   ),
