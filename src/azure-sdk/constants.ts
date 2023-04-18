@@ -1,0 +1,1 @@
+export const AZURE_SDK_MODULE = 'AZURE_SDK_MODULE';
