@@ -26,7 +26,7 @@ import { DefaultAzureCredential } from '@azure/identity';
   imports: [
     // register Blob Service client
     AzureSdkModule.register({
-      client: new new ContainerClient(
+      client: new ContainerClient(
         'https://myaccount.blob.core.windows.net/mycontainer', 
         new DefaultAzureCredential()
       ),
