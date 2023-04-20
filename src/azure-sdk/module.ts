@@ -4,6 +4,7 @@ import {
   Module,
   ModuleMetadata,
   Provider,
+  Scope,
 } from '@nestjs/common';
 import { AZURE_SDK_MODULE } from './constants';
 
@@ -11,6 +12,7 @@ interface RegisterOptions<C extends ClassDefinition> {
   isGlobal?: boolean;
   key?: string;
   client: ClassConstructorReturnType<C>;
+  scope?: Scope
 }
 
 interface RegisterAsyncOptions<C extends ClassDefinition>
@@ -22,6 +24,7 @@ interface RegisterAsyncOptions<C extends ClassDefinition>
   useFactory: (
     ...args: any[]
   ) => ClassConstructorReturnType<C> | Promise<ClassConstructorReturnType<C>>;
+  scope?: Scope
 }
 
 @Module({})
@@ -37,6 +40,7 @@ export class AzureSdkModule {
     const ClientProvider: Provider = {
       provide: providerToken,
       useValue: client,
+      scope: options.scope
     };
 
     return {
@@ -66,6 +70,7 @@ export class AzureSdkModule {
       inject,
       provide: providerToken,
       useFactory,
+      scope: options.scope
     };
 
     return {
