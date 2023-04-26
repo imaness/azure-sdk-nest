@@ -1,6 +1,6 @@
 # Azure SDK NestJS
 
-> Azure SDK Javascript dynamic module for NestJS
+Azure SDK Javascript dynamic module for NestJS
 
 [![TypeScript](https://img.shields.io/badge/--3178C6?logo=typescript&logoColor=ffffff)](https://www.typescriptlang.org/) [![Npm package version](https://badgen.net/npm/v/@imaness/azure-sdk-nest)](https://badgen.net/npm/v/@imaness/azure-sdk-nest)
 
